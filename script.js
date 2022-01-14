@@ -5,31 +5,34 @@ let products = JSON.parse(localStorage.getItem("products"))
 {
     title:"Lenovo Legion Y740 i7 8750 16GB 1TB 256GB 2060 6GB Gaming Laptop",
     category:"Laptops",
-    price:"R30,999",
+    price:"30999",
     img:"https://i.postimg.cc/MHyqNJpd/laptop1.jpg",
 },
 
 {
     title:"Apple iPhone 13 Pro Max 256GB Sierra Blue",
     category:"Cellphone",
-    price:"R28,499",
+    price:"28499",
     img:"https://i.postimg.cc/ZRLBBmbg/product-2.jpg",
 },
 
 {
     title:"JBL PartyBox 1000 Bluetooth Speaker with Light Effects Black",
     category:"speakers",
-    price:"R 19,499",
+    price:" 19499",
     img:"https://i.postimg.cc/8cg0Pqkj/58134694-1-zoom.jpg",
 },
 
 {
     title:"Samsung Galaxy Buds Live",
     category:"earpods",
-    price:"R 2,999",
+    price:" 2999",
     img:"https://i.postimg.cc/63M89Nfh/486x486.webp",
 }
 ]
+let cart = JSON.parse(localStorage.getItem("cart"))
+? JSON.parse(localStorage.getItem("cart")) :[];
+//  read //
 
 function readProducts(products) {
     document.querySelector("#products").innerHTML = "";
@@ -41,8 +44,13 @@ function readProducts(products) {
     <h4 class="card-title">${ product.title }</h4>
     <h5>${product.category}</h5>
     <p class="card-text">${product.price}</p>
-    <button class="btn btn-danger" onclick="deleteProducts(${i})" >delete</button>
+    <div>
+    <label class="form-label">Quantity:</label>
+    <input type="number" min=1 value=1 id="addQTY${i}"/>
+    </div>
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#update-modal${i}" >update</button>
+    <button class="btn btn-danger" onclick="deleteProducts(${i})" >delete</button>
+    <button class="btn btn-danger" onclick="addToCart(${i})" >add to cart</button>
   </div>
 </div>
     <div class="modal fade" id="update-modal${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -79,6 +87,7 @@ function readProducts(products) {
   readProducts(products);
 
   //create//
+
 function createProducts(){
     let title = document.querySelector(`#update-title`).value;
     let category = document.querySelector(`#update-category`).value;
@@ -101,6 +110,7 @@ function createProducts(){
   }
 
   //delete//
+
 function deleteProducts(i) {
     products.splice(i, 1);
     localStorage.setItem("#products", JSON.stringify(products));
@@ -108,6 +118,7 @@ function deleteProducts(i) {
   }
   
   //update//
+
 function updateProducts(i) {
   let title = document.querySelector(`#update-title${i}`).value;
   let category = document.querySelector(`#update-category${i}`).value;
@@ -127,3 +138,35 @@ function updateProducts(i) {
       alert(err);
     }
   }
+  //  add to cart //
+  
+  function addToCart(i){
+    let QTY = document.querySelector(`#addQTY${i}`).value;
+    let added = false;
+    cart.forEach(product => {
+      if(product.title == products[i].title){
+        product.QTY = parseInt(product.QTY) + parseInt(QTY)
+        added = true
+        localStorage.setItem("cart",JSON.stringify(cart));
+      }
+    })
+    if (!added){
+      cart.push({...products[i] ,QTY});
+      localStorage.setItem("cart",JSON.stringify(cart));
+    }
+    
+  }
+  //  sort by category //
+   function categorysort(){
+     let category =document.querySelector("#categorysort").value;
+      
+     if(category=="all"){
+       readProducts(products);
+       return;
+     }
+
+     let filteredproducts=products.filter(product => {
+       return product.category==category
+     })
+     readProducts(filteredproducts);
+   }
