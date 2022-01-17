@@ -12,10 +12,19 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+            <a class="btn btn-primary active" aria-current="page" href="./index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href=".//cart.html">cart</a>
+            <a
+              class="btn btn-primary active position-relative"
+              href=".//cart.html"
+              >Cart
+              
+              <span
+                id="badge"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              ></span
+            ></a>
           </li>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             add a new product

@@ -156,6 +156,12 @@ function updateProducts(i) {
     }
     
   }
+  showCartBadge();
+  
+    //  cart badge //
+    function showCartBadge() {
+      document.querySelector("#badge").innerHTML = cart ? cart.length : "";
+    }
   //  sort by category //
    function categorysort(){
      let category =document.querySelector("#categorysort").value;
@@ -203,3 +209,4 @@ function updateProducts(i) {
     readProducts(products);
     
   }
+
