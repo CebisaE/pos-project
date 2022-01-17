@@ -1,13 +1,18 @@
+body{
+        background-color: Medium Turquoise;
+}
 #products{
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     margin-left: 30px;
     padding: 30px;
 }
 
 .card{
     margin: 20px;
+    width: 26rem;
 }
 #cart{
     display:flex;
@@ -19,6 +24,7 @@
 .total{
     display:flex;
     flex-direction: column;
+    flex-wrap: wrap;
     margin-left: 30px;
     padding: 30px;  
 }
@@ -26,6 +32,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     margin:50px;
-    
+
 }

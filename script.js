@@ -38,7 +38,7 @@ function readProducts(products) {
     document.querySelector("#products").innerHTML = "";
     products.forEach((product, i) => {
       document.querySelector("#products").innerHTML += `
-        <div class="card" style="width: 18rem;">
+        <div class="card">
   <img src="${product.img}" class="card-img-top" alt="...">
   <div class="card-body">
     <h4 class="card-title">${ product.title }</h4>
@@ -64,8 +64,8 @@ function readProducts(products) {
       TITLE<input type="text" id="update-title${i}"/> <br>
       CATEGORY<select name="category" id="update-category${i}"><br>
           <option value="select">-select one-</option><br>
-      <option value="laptops">laptops</option>
-      <option value="cellphones">cellphones</option>
+      <option value="Laptops">laptops</option>
+      <option value="Cellphone">cellphones</option>
       <option value="speakers">speakers</option>
       <option value="earpods">earpods</option>
     </select><br>
