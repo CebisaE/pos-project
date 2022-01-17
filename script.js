@@ -64,9 +64,9 @@ function readProducts(products) {
       TITLE<input type="text" id="update-title${i}"/> <br>
       CATEGORY<select name="category" id="update-category${i}"><br>
           <option value="select">-select one-</option><br>
-      <option value="laptop">laptop</option>
-      <option value="cellphone">cellphones</option>
-      <option value="speaker">speakers</option>
+      <option value="laptops">laptops</option>
+      <option value="cellphones">cellphones</option>
+      <option value="speakers">speakers</option>
       <option value="earpods">earpods</option>
     </select><br>
     PRICE<input type="text" id="update-price${i}" value=""/><br>
@@ -125,7 +125,7 @@ function updateProducts(i) {
   let price = document.querySelector(`#update-price${i}`).value;
   let img = document.querySelector(`#update-img${i}`).value;
     try {
-      if (!title || !price || !img) throw new Error("please enter fields to update!!!");
+      if (!title || !price || !img) throw new Error("please enter all fields to update!!!");
       products[i] = {
         title,
         category,
@@ -166,7 +166,40 @@ function updateProducts(i) {
      }
 
      let filteredproducts=products.filter(product => {
-       return product.category==category
+       return product.category == category
      })
      readProducts(filteredproducts);
    }
+
+
+  //  sort by price //
+
+  function pricesort(){
+    let direction = document.querySelector("#pricesort").value
+    
+    let sortedProducts = products.sort((a,b)=>a.price - b.price);
+
+    console.log(sortedProducts);
+    
+    if(direction == "descending") sortedProducts.reverse();
+    readProducts(sortedProducts);
+  }
+  //  sort by name //
+
+  function Sortname(){
+    let direction = document.querySelector("#Sortname").value;
+
+    let sortedProducts = products.sort((a,b)=> {
+      if (a.title.toLowerCase()<b.title.toLowerCase()){
+        return -1 ;
+      }
+      if (a.title.toLowerCase()> b.title.toLowerCase()){
+        return 1 ;
+      }
+      return 0 ;
+    });
+    if (direction == "descending") sortedProducts.reverse();
+    console.log(sortedProducts);
+    readProducts(products);
+    
+  }

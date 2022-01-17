@@ -31,6 +31,7 @@ function readCart(cart){
 
     document.querySelector("#cart").innerHTML += `
     <h1 class="total">your total is R${calculateTotal()}</h1>
+    <button class="btn btn-primary " onclick="checkout()">checkout</button>
     `
 }
 readCart(cart)
@@ -63,3 +64,22 @@ function calculateTotal(){
     return total.toFixed(2);
 }
 
+//Checkout
+
+function checkout() {
+    let total = calculateTotal()
+    console.log(total)
+
+    try {
+      if (parseInt(total) == 0) throw new Error("nothing in cart");
+      let confirmation = confirm(`Total payment needed: R${calculateTotal()}`);
+      if (confirmation) {
+        cart.length = 0;
+        localStorage.removeItem("cart");
+      }
+      readCart(cart);
+    } catch (err) {
+      alert(err);
+    }
+  }
+  

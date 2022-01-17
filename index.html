@@ -23,7 +23,7 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             add a new product
           </button>
-          
+        
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -36,9 +36,9 @@
                   TITLE <input type="text" id="update-title"/> <br>
                   CATEGORY <select name="category" id="update-category"><br>
                     <option value="select">-select one-</option><br>
-                <option value="laptop">laptop</option>
-                <option value="cellphone">cellphones</option>
-                <option value="speaker">speakers</option>
+                <option value="laptops">laptops</option>
+                <option value="cellphones">cellphones</option>
+                <option value="speakers">speakers</option>
                 <option value="earpods">earpods</option>
               </select><br>
               PRICE<input type="text" id="update-price"/><br>
@@ -55,15 +55,30 @@
       <div class="container">
         <div>
             <label for="categorysort" class="form-label">sort by category</label>
-            <select name="categorysort" id="categorysort">
-              <option value="select">-select one-</option><br>
-              <option value="laptop">laptop</option>
-              <option value="cellphone">cellphones</option>
-              <option value="speaker">speakers</option>
+            <select name="categorysort" id="categorysort" onchange="categorysort()">
+              <option value="all">all</option>
+              <option value="Laptops">laptops</option>
+              <option value="Cellphones">cellphones</option>
+              <option value="speakers">speakers</option>
               <option value="earpods">earpods</option>
             </select>
+        </div><br><br><br>
+        <div>
+          <label for="pricesort" class="form-label">sort by price</label>
+          <select name="pricesort" id="pricesort" onchange="pricesort()">
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending</option>
+          </select>
+        </div> <br><br><br>
+        <div>
+          <label for="Sortname" class="form-label">sort by name</label>
+          <select name="Sortname" id="Sortname" onchange="Sortname()">
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending</option>
+          </select>
         </div>
         </div>
+
 <div id="products">
 </div>
 
